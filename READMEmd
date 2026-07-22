@@ -1,6 +1,6 @@
 # Norm extinction in multi-agent RL project brief
 
-C. Choi — working document, v3, July 2026
+C. Choi's working document, v3, July 2026
 ## 1. The question
 
 **Does a learned social norm survive the removal of the population that enforced it, and what determines the rate at which it decays?**
@@ -9,7 +9,7 @@ Stated as the strongest defensible claim:
 
 > Norm internalization is not binary but a measurable decay rate; that rate is determined jointly by where the norm is grounded and by the agent's capacity to represent what the norm protects; and an agent can possess that capacity, have it be decodable and causally active elsewhere, and still comply at the rate of an arbitrary convention.
 
-### 1.1 Operationalization — decided in advance
+### 1.1 Operationalization, decided in advance
 
 **Internalization is defined as a *difference* in decay rate between environmentally-grounded and socially-grounded norms. It is never claimed as an absolute property of a single policy.**
 
@@ -17,7 +17,7 @@ This is a deliberate defense. The deflationary reading of any Phase 2 result is:
 
 Defined as a contrast, it has nothing to collapse. Generic value drift predicts **both** berries decay together. Differential decay is not predicted by it.
 
-**Language discipline:** Results use deflationary phrasing — *"persistence of socially-acquired avoidance."* The word *internalization* appears only in the Discussion. Reviewers attack interpretive load in Results far more readily than in Discussion.
+Language discipline: Results use deflationary phrasing, *"persistence of socially-acquired avoidance."* The word *internalization* appears only in the Discussion. Reviewers attack interpretive load in Results far more readily than in Discussion.
 
 ---
 
