@@ -1,0 +1,38 @@
+{
+  "hp": {
+    "hidden": 64,
+    "lr": 0.0003,
+    "gamma": 0.99,
+    "lam": 0.95,
+    "clip": 0.2,
+    "epochs": 3,
+    "ent": 0.01,
+    "vf": 0.5,
+    "max_grad": 0.5,
+    "num_envs": 256,
+    "updates": 1500
+  },
+  "n_seeds": 5,
+  "conditions": [
+    [],
+    [
+      0
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "env_list": [
+    {
+      "poison_delay": 100,
+      "r_zap_bonus": 0.5,
+      "episode_len": 300,
+      "zap_removal_steps": 25,
+      "observe_pending": false
+    }
+  ],
+  "n_list": [
+    12
+  ]
+}
