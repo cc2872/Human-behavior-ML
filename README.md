@@ -5,37 +5,18 @@ C. Choi's working document, v3, July 2026
 
 **Does a learned social norm survive the removal of the population that enforced it, and what determines the rate at which it decays?**
 
-Stated as the strongest defensible claim:
-
-> Norm internalization is not binary but a measurable decay rate; that rate is determined jointly by where the norm is grounded and by the agent's capacity to represent what the norm protects; and an agent can possess that capacity, have it be decodable and causally active elsewhere, and still comply at the rate of an arbitrary convention.
-
-### 1.1 Operationalization, decided in advance
-
-**Internalization is defined as a *difference* in decay rate between environmentally-grounded and socially-grounded norms. It is never claimed as an absolute property of a single policy.**
-
-This is a deliberate defense. The deflationary reading of any Phase 2 result is: *"a value function shaped by past punishment decays under new data; you measured off-policy value drift and called it internalization."* That reduction is mechanistically correct and unwinnable if the claim is absolute.
-
-Defined as a contrast, it has nothing to collapse. Generic value drift predicts **both** berries decay together. Differential decay is not predicted by it.
-
-Language discipline: Results use deflationary phrasing, *"persistence of socially-acquired avoidance."* The word *internalization* appears only in the Discussion. Reviewers attack interpretive load in Results far more readily than in Discussion.
-
----
-
 ## 2. Position in the literature
 
 **What exists.**
 
-- **Köster et al., PNAS 2022 ("spurious normativity")** — the direct ancestor. Multi-agent gridworld; agents learn to avoid a poisonous berry; making it taboo (punishable by peers) accelerates learning by converting a delayed health consequence into an immediate social one. A *second* taboo on a harmless berry — a rule with no intrinsic stake — improves collective welfare anyway, because it generates extra enforcement practice. Establishes that compliance is built on top of enforcement, not vice versa. Earlier version: arXiv 2001.09318, which reports the environment parameter sweeps.
-- **Köster's isolation probes.** Agents placed alone with a single berry still avoid the taboo one. This is the disposition-vs-strategy test in snapshot form — already run, in 2022. It was instrumentation for them, not the finding.
+- **Köster et al., PNAS 2022 ("spurious normativity")** the direct ancestor. 
+- **Köster's isolation probes.** Agents placed alone with a single berry still avoid the taboo one. This is the disposition-vs-strategy test in snapshot form.
 - **Norm internalization** is a named concept in normative multi-agent systems and social theory: compliance relativized to enforcement belief vs. a goal endogenized and pursued for its own sake. But in that literature internalization is a hand-specified parameter with a tunable rate, not an emergent property of a learned policy.
-- **Melting Pot** — DeepMind's generalization benchmark, 50+ substrates and 250+ scenarios with held-out background populations. Tests generalization to *novel co-players*, not to removed incentive.
-- **Gelpí et al., PNAS Nexus 2025** — role-based stereotypic conventions emerging from coordination dynamics alone, persisting across generations after the originating differences vanish.
-
+- **Melting Pot**
+- **Gelpí et al., PNAS Nexus 2025** 
 **What does not exist, as far as searching can establish.**
 
-Nobody removes a trained agent from a normative population and measures the *extinction curve* of compliance, with an environmentally-grounded norm as internal control. Norm "forgetting" appears in agent-based lifecycle models as a decay parameter, never as a measured property of deep-RL policies. The three-phase acquisition → extinction → renewal paradigm from animal learning has not been imported.
-
-**Honest calibration.** The environment and the probe design are taken. What remains is a refinement: does an internalized norm survive *sustained* extinction, does it survive when it *costs* rather than merely *forbids*, and is it mechanistically identifiable. This is a "we extend Köster" paper. That is a legitimate contribution priced correctly.
+Nobody removes a trained agent from a normative population and measures the *extinction curve* of compliance, with an environmentally-grounded norm as internal control. Norm "forgetting" appears in agent-based lifecycle models as a decay parameter, never as a measured property of deep-RL policies. 
 
 ---
 
@@ -53,25 +34,13 @@ Nobody removes a trained agent from a normative population and measures the *ext
 | Actions | 7 — move N/E/S/W, eat, zap, noop |
 | Episode | 1000 steps |
 
-**Berry type 0 ("poison")** — `+1` on eating, then `−4` delayed by `D = 25` steps. Grounded in the **environment**. *Positive control.*
+**Berry type 0 ("poison")** `+1` on eating, then `−4` delayed by `D = 25` steps. Grounded in the **environment**. *Positive control.*
 
-**Berry type 1 ("harmless")** — `+1` on eating, no consequence ever. Grounded only in the **population**, if marked. *Upper bound on decay rate.*
+**Berry type 1 ("harmless")** `+1` on eating, no consequence ever. Grounded only in the **population**, if marked. *Upper bound on decay rate.*
 
 Eating type `t` sets a visible mark for 40 steps. Zapping costs the zapper `0.1` and the target `2.0`, beam range 4.
 
 **The environment does not encode which marks deserve punishment.** Who gets zapped is entirely learned. The norm is not built in.
-
-### 3.2 Training conditions
-
-`marked_berries` reproduces Köster's three arms: `()` no rule, `(0,)` important rule only, `(0,1)` important + silly rule.
-
-### 3.3 The test phase — two-factor design
-
-Naive removal confounds two things. Taking an agent out of the population removes enforcement **and** shifts the observation distribution: no other agents, no marks on others, no zap beams. Continued learning under shifted input can degrade a policy for reasons unrelated to norm extinction, and a recurrent policy makes this worse, since hidden state evolves off-manifold.
-
-The poison control only partly covers this — poison avoidance may be more robust to distribution shift simply because it is a simpler stimulus→action mapping.
-
-**Therefore the test phase is crossed, not a single removal:**
 
 | | **Enforcement ON** | **Enforcement OFF** |
 |---|---|---|
